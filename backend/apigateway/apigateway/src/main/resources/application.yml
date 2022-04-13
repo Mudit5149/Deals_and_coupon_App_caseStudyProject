@@ -1,0 +1,25 @@
+server:
+  port: 9001
+
+eureka:
+  instance:
+    hostname: localhost
+spring:
+  application:
+    name: gateway
+
+cloud:
+  gateway:
+    routes:
+    - id: SER-coupon
+      uri: lb://SER-coupon
+      predicates:
+        - Path=/coupons/**
+    - id: user-service
+      uri: lb//user-service
+      predicates:
+          -path=/user/**
+    - id: Admin-service
+      uri: lb://Admin-service
+      predicates:
+        -Path=/Admin-service
